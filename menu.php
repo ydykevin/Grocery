@@ -25,6 +25,7 @@
                 <!--<li class="nav-item active">-->
                     <!--<a class="nav-link" href="#">Frozen</a>-->
                 <!--</li>-->
+
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="frozen" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -38,20 +39,20 @@
                                 Fish Fingers
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="fishfinger">
-                                <li><a class="dropdown-item" href="#">500G</a></li>
-                                <li><a class="dropdown-item" href="#">1000G</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=1000" target="top_right">500G</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=1001" target="top_right">1000G</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Hamburger Patties</a></li>
-                        <li><a class="dropdown-item" href="#">Shelled Prawns</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=1002" target="top_right">Hamburger Patties</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=1003" target="top_right">Shelled Prawns</a></li>
                         <li class="nav-item dropdown">
                             <a class="dropdown-item dropdown-toggle" href="#" id="tub" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 Tub Ice Cream
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="tub">
-                                <li><a class="dropdown-item" href="#">1L</a></li>
-                                <li><a class="dropdown-item" href="#">2L</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=1004" target="top_right">1L</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=1005" target="top_right">2L</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -70,16 +71,16 @@
                                 Cheddar Cheese
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="fishfinger">
-                                <li><a class="dropdown-item" href="#">500G</a></li>
-                                <li><a class="dropdown-item" href="#">1000G</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=3000" target="top_right">500G</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=3001" target="top_right">1000G</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">T Bone Steak</a></li>
-                        <li><a class="dropdown-item" href="#">Navel Oranges</a></li>
-                        <li><a class="dropdown-item" href="#">Bananas</a></li>
-                        <li><a class="dropdown-item" href="#">Peaches</a></li>
-                        <li><a class="dropdown-item" href="#">Grapes</a></li>
-                        <li><a class="dropdown-item" href="#">Apples</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=3002" target="top_right">T Bone Steak</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=3003" target="top_right">Navel Oranges</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=3004" target="top_right">Bananas</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=3005" target="top_right">Peaches</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=3006" target="top_right">Grapes</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=3007" target="top_right">Apples</a></li>
                     </ul>
                 </li>
 
@@ -96,9 +97,9 @@
                                 Earl Grey Tea Bags
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="fishfinger">
-                                <li><a class="dropdown-item" href="#">Pack 25</a></li>
-                                <li><a class="dropdown-item" href="#">Pack 100</a></li>
-                                <li><a class="dropdown-item" href="#">Pack 200</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=4000" target="top_right">Pack 25</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=4001" target="top_right">Pack 100</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=4002" target="top_right">Pack 200</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -107,11 +108,11 @@
                                 Instant Coffee
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="fishfinger">
-                                <li><a class="dropdown-item" href="#">200G</a></li>
-                                <li><a class="dropdown-item" href="#">500G</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=4003" target="top_right">200G</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=4004" target="top_right">500G</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Chocolate Bar</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=4005" target="top_right">Chocolate Bar</a></li>
                     </ul>
                 </li>
 
@@ -128,23 +129,23 @@
                                 Panadol
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="fishfinger">
-                                <li><a class="dropdown-item" href="#">Pack 24</a></li>
-                                <li><a class="dropdown-item" href="#">Bottle 50</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=2000" target="top_right">Pack 24</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=2001" target="top_right">Bottle 50</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Bath Soap</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=2002" target="top_right">Bath Soap</a></li>
                         <li class="nav-item dropdown">
                             <a class="dropdown-item dropdown-toggle" href="#" id="garbage" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 Garbage Bags
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="fishfinger">
-                                <li><a class="dropdown-item" href="#">Small (Pack 10)</a></li>
-                                <li><a class="dropdown-item" href="#">Big (Pack 50)</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=2003" target="top_right">Small (Pack 10)</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=2004" target="top_right">Big (Pack 50)</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Washing Powder</a></li>
-                        <li><a class="dropdown-item" href="#">Laundry Bleach</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=2005" target="top_right">Washing Powder</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=2006" target="top_right">Laundry Bleach</a></li>
                     </ul>
                 </li>
 
@@ -161,16 +162,16 @@
                                 Dry Dog Food
                             </a>
                             <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px" aria-labelledby="fishfinger">
-                                <li><a class="dropdown-item" href="#">1KG</a></li>
-                                <li><a class="dropdown-item" href="#">5KG</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=5000" target="top_right">1KG</a></li>
+                                <li><a class="dropdown-item" href="detail.php?product_id=5001" target="top_right">5KG</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Bird Food</a></li>
-                        <li><a class="dropdown-item" href="#">Cat Food</a></li>
-                        <li><a class="dropdown-item" href="#">Fish Food</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=5002" target="top_right">Bird Food</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=5003" target="top_right">Cat Food</a></li>
+                        <li><a class="dropdown-item" href="detail.php?product_id=5004" target="top_right">Fish Food</a></li>
                     </ul>
                 </li>
-                
+
             </ul>
         </div>
     </nav>
