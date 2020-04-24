@@ -15,19 +15,25 @@
     <?php
     require "head.html";
     ?>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+    </style>
 
 </head>
 
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-weight: bold" id="main_navbar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary"
+     style="font-weight: bold; width: 300px;position: absolute;z-index: 2;" id="main_navbar">
     <a class="navbar-brand" href="#">Online Grocery Store</a>
     <div class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <!--<li class="nav-item active">-->
             <!--<a class="nav-link" href="#">Frozen</a>-->
             <!--</li>-->
-
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="frozen" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -221,6 +227,7 @@
         </ul>
     </div>
 </nav>
+<div style="height: 100%;width: 300px;background-color: #6c757d;position: absolute;z-index: 1;"></div>
 
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
