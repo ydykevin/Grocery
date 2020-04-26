@@ -148,14 +148,14 @@
     function checkStock() {
 
             if(parseInt(<?php echo $_SESSION['cart'][$product_id] ?>) + parseInt($('#add_quantity').val()) <= parseInt(<?php echo $_SESSION['in_stock'] ?>)){
-                   alert("old session enough");
+                   //alert("old session enough");
                    return true;
             }else{
-                   alert("not enough");
+                   //alert("not enough");
                    var more = parseInt(<?php echo $_SESSION['in_stock'] ?>) - parseInt(<?php echo $_SESSION['cart'][$product_id] ?>);
                     //$('#remind_more').text("You can add "+more+" more");
                     //$('#no_stock').css("display", "block");
-                    alert("No enough stock");
+                    alert("Detail: No enough stock");
                    return false;
             }
 

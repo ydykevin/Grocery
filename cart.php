@@ -18,11 +18,14 @@ if (isset($_POST['add_quantity'])) {
     //echo $_POST['add_quantity'], "<br>";
     //echo $_SESSION['product_id'], "<br>";
     //echo $_SESSION['in_stock'], "<br>";
+    if(!isset($_SESSION['cart'][$_SESSION['product_id']])){
+        $_SESSION['cart'][$_SESSION['product_id']] = 0;
+    }
     if ($_SESSION['cart'][$_SESSION['product_id']] + $_POST['add_quantity'] > $_SESSION['in_stock']) {
         ?>
         <script>
             $(function () {
-                alert("No enough stock");
+                alert("Cart: No enough stock");
             });
         </script>
         <?php
@@ -31,10 +34,17 @@ if (isset($_POST['add_quantity'])) {
     }
 }
 
+if(isset($_POST['delete'])){
+    foreach ($_POST['delete'] as $delete_item) {
+        unset($_SESSION['cart'][$delete_item]);
+    }
+}
 
-    echo "2";
-    echo $_POST['delete'];
-
+if(isset($_POST['clear'])){
+    unset($_SESSION['cart']);
+}
+$_SESSION['total_quantity'] = 0;
+$_SESSION['total_price'] = 0;
 ?>
 
 <table class="table table-bordered" style="width: 99%;">
@@ -55,8 +65,7 @@ if (isset($_POST['add_quantity'])) {
         $max = sizeof($_SESSION['cart']);
         //echo "<br>size:", $max;
         $db = mysqli_connect("localhost", "potiro", "pcXZb(kL", "poti", "3307") or die("Fail to connect to MYSQL");
-        $_SESSION['total_quantity'] = 0;
-        $_SESSION['total_price'] = 0;
+
         while (list ($key, $val) = each($_SESSION['cart'])) {
             $_SESSION['total_quantity'] += $val;
             ?>
@@ -110,22 +119,23 @@ if (isset($_POST['add_quantity'])) {
         ?>
 
         </tr>
-        <tr style="font-weight: bold">
-            <td style="text-align: right" colspan="4">Total</td>
-            <td id="total_number">
-                <?php echo $_SESSION['total_quantity']; ?></td>
-            <td id="total_price">
-                $<?php echo $_SESSION['total_price']; ?></td>
-            </td>
-        </tr>
+
         <?php
     } ?>
+    <tr style="font-weight: bold">
+        <td style="text-align: right" colspan="4">Total</td>
+        <td id="total_number">
+            <?php echo $_SESSION['total_quantity']; ?></td>
+        <td id="total_price">
+            $<?php echo $_SESSION['total_price']; ?></td>
+        </td>
+    </tr>
 
     </tbody>
 </table>
 <!--<form action="cart.php" method="post" target="bottom_right">-->
 <form id="cart_form" action="cart.php" method="post" target="bottom_right">
-    <input name="delete" value="321" id="delete_item" style="display: none">
+<!--    <input name="delete" value="321" id="delete_item" style="display: none">-->
     <button type="submit" class="btn btn-secondary" onclick="doDelete()">Delete</button>
     <button type="submit" class="btn btn-secondary" onclick="doClear()">Clear</button>
     <button type="submit" class="btn btn-secondary float-right" onclick="doCheckout()" style="margin-right: 20px;">
@@ -134,16 +144,16 @@ if (isset($_POST['add_quantity'])) {
 </form>
 <script>
     function doDelete() {
-        var deleteItem = [];
+        //var deleteItem = [];
         $('.checkbox:checked').each(function () {
             var pid = $(this).parents("tr").find(".product_id").text().trim();
-            deleteItem.push(pid);
-
-        })
-        for(var i=0;i<deleteItem.length;i++){
-            alert(deleteItem[i]);
-        }
-        $("#delete_item").val(" 4321")  ;
+            //deleteItem.push(pid);
+            $("#cart_form").append('<input name="delete[]" type="hidden"value="'+pid+'">');
+        });
+        // for(var i=0;i<deleteItem.length;i++){
+        //     alert(deleteItem[i]);
+        // }
+        //$("#delete_item").val(" 4321")  ;
         // $.ajax({
         //     type : 'post',
         //     url : 'cart.php',
@@ -163,7 +173,7 @@ if (isset($_POST['add_quantity'])) {
     }
 
     function doClear() {
-        alert("2");
+        $("#cart_form").append('<input name="clear" type="hidden">');
     }
 
     function doCheckout() {
