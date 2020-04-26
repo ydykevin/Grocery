@@ -17,7 +17,6 @@
 
 <body>
 
-
 <table class="table table-bordered" style="width: 99%;">
     <thead class="bg-secondary" style="color:#fff">
     <tr>
@@ -38,7 +37,6 @@
         //session_start();
         //session_destroy();
         session_start();
-
 //        if (isset($_SESSION['cart']['bb'])) {
 //            echo "bb set";
 //        }
@@ -59,7 +57,7 @@
             //unset($_SESSION['cart'][$product_id]);
             $_SESSION['cart'][$product_id] = 0;
         }
-        echo "cart:",$_SESSION['cart'][$product_id];
+        //echo "cart:",$_SESSION['cart'][$product_id];
         //unset($_SESSION['cart']['apple']);
 
         //$max = sizeof($_SESSION['cart']);
@@ -87,7 +85,7 @@
             <?php echo $data["product_name"] ?>
         </td>
         <td>
-            <?php echo $data["unit_price"] ?>
+            $<?php echo $data["unit_price"] ?>
         </td>
         <td>
             <?php echo $data["unit_quantity"] ?>
@@ -97,7 +95,7 @@
             $_SESSION['in_stock'] = $data["in_stock"]; ?>
         </td>
         <td style="width: 200px;">
-            <form id="add_form" action="cart.php" method="post" target="bottom_right" onsubmit="return checkStock()">
+            <form action="cart.php" method="post" target="bottom_right" onsubmit="return checkStock()">
                 <div class="row">
                     <div class="col-8">
                         <input class="form-control" type="number" value="1" id="add_quantity" name="add_quantity">
@@ -148,12 +146,7 @@
     });
 
     function checkStock() {
-        //alert("pid:"+<?php //echo $product_id ?>//);
-        //alert("cart number:"+<?php //echo $_SESSION['cart'][$product_id] ?>//);
-        //alert("add number:"+$('#add_quantity').val());
-        //alert("in_stock:"+<?php //echo $_SESSION['in_stock'] ?>//);
 
-        if (<?php echo isset($_SESSION['cart'][$product_id]) ?>) {
             if(parseInt(<?php echo $_SESSION['cart'][$product_id] ?>) + parseInt($('#add_quantity').val()) <= parseInt(<?php echo $_SESSION['in_stock'] ?>)){
                    alert("old session enough");
                    return true;
@@ -165,7 +158,7 @@
                     alert("No enough stock");
                    return false;
             }
-        }
+
     }
 </script>
 

@@ -15,27 +15,32 @@
 <?php
 session_start();
 if (isset($_POST['add_quantity'])) {
-    echo $_POST['add_quantity'], "<br>";
-    echo $_SESSION['product_id'], "<br>";
-    echo $_SESSION['in_stock'], "<br>";
-    if($_SESSION['cart'][$_SESSION['product_id']]+$_POST['add_quantity']>$_SESSION['in_stock']){
+    //echo $_POST['add_quantity'], "<br>";
+    //echo $_SESSION['product_id'], "<br>";
+    //echo $_SESSION['in_stock'], "<br>";
+    if ($_SESSION['cart'][$_SESSION['product_id']] + $_POST['add_quantity'] > $_SESSION['in_stock']) {
         ?>
         <script>
-            $(function(){
+            $(function () {
                 alert("No enough stock");
             });
         </script>
         <?php
-    }else {
+    } else {
         $_SESSION['cart'][$_SESSION['product_id']] += $_POST['add_quantity'];
     }
 }
+
+
+    echo "2";
+    echo $_POST['delete'];
+
 ?>
 
 <table class="table table-bordered" style="width: 99%;">
     <thead class="bg-secondary" style="color:#fff">
     <tr>
-        <th scope="col">Delete</th>
+        <th scope="col" style="text-align: center">Delete</th>
         <th scope="col">Product Name</th>
         <th scope="col">Unit Price</th>
         <th scope="col">Unit Quantity</th>
@@ -48,13 +53,15 @@ if (isset($_POST['add_quantity'])) {
     <?php
     if (isset($_SESSION['cart'])) {
         $max = sizeof($_SESSION['cart']);
-        echo "<br>size:", $max;
+        //echo "<br>size:", $max;
         $db = mysqli_connect("localhost", "potiro", "pcXZb(kL", "poti", "3307") or die("Fail to connect to MYSQL");
+        $_SESSION['total_quantity'] = 0;
+        $_SESSION['total_price'] = 0;
         while (list ($key, $val) = each($_SESSION['cart'])) {
-
+            $_SESSION['total_quantity'] += $val;
             ?>
 
-            <tr class="vertial-middle">
+            <tr class="vertial-middle" id="cart_rows">
             <?php
 
             $product_id = $key;
@@ -63,21 +70,24 @@ if (isset($_POST['add_quantity'])) {
             $result = mysqli_query($db, $query);
             if ($result) {
                 while ($data = mysqli_fetch_array($result)) {
-                    if($_SESSION['cart'][$data["product_id"]]==0){
+                    if ($_SESSION['cart'][$data["product_id"]] == 0) {
                         unset($_SESSION['cart'][$data["product_id"]]);
                         continue;
                     }
-                    echo "<br>pid:", $key, "<br>", $val;
+                    //echo "<br>pid:", $key, "<br>", $val;
                     ?>
 
-                    <th style="font-weight: unset;vertical-align: middle;">
-                        <?php echo $data["product_id"] ?>
+                    <th style="font-weight: unset;vertical-align: middle;text-align: center">
+                        <input type="checkbox" class="checkbox">
                     </th>
-                    <td>
+                    <td style="display: none" class="product_id">
+                        <?php echo $data["product_id"] ?>
+                    </td>
+                    <td class="product_name">
                         <?php echo $data["product_name"] ?>
                     </td>
                     <td>
-                        <?php echo $data["unit_price"] ?>
+                        $<?php echo $data["unit_price"] ?>
                     </td>
                     <td>
                         <?php echo $data["unit_quantity"] ?>
@@ -86,18 +96,11 @@ if (isset($_POST['add_quantity'])) {
                         <?php echo $_SESSION['cart'][$data["product_id"]] ?>
                     </td>
                     <td style="width: 200px;">
-                    <form id="add_form" action="cart.php" method="post" target="bottom_right"
-                          onsubmit="return checkStock()">
-                        <div class="row">
-                            <div class="col-8">
-                                <input class="form-control" type="number" value="1" id="add_quantity"
-                                       name="add_quantity">
-                            </div>
-                            <div>
-                                <button id="add_button" class="btn btn-secondary" type="submit">Add</button>
-                            </div>
-                        </div>
-                    </form>
+                        $<?php
+                        $subtotal = $data["unit_price"] * $_SESSION['cart'][$data["product_id"]];
+                        $_SESSION['total_price'] += $subtotal;
+                        echo $subtotal;
+                        ?>
                     </td>
                     <?php
                 }
@@ -107,10 +110,65 @@ if (isset($_POST['add_quantity'])) {
         ?>
 
         </tr>
-
+        <tr style="font-weight: bold">
+            <td style="text-align: right" colspan="4">Total</td>
+            <td id="total_number">
+                <?php echo $_SESSION['total_quantity']; ?></td>
+            <td id="total_price">
+                $<?php echo $_SESSION['total_price']; ?></td>
+            </td>
+        </tr>
         <?php
     } ?>
+
     </tbody>
 </table>
+<!--<form action="cart.php" method="post" target="bottom_right">-->
+<form id="cart_form" action="cart.php" method="post" target="bottom_right">
+    <input name="delete" value="321" id="delete_item" style="display: none">
+    <button type="submit" class="btn btn-secondary" onclick="doDelete()">Delete</button>
+    <button type="submit" class="btn btn-secondary" onclick="doClear()">Clear</button>
+    <button type="submit" class="btn btn-secondary float-right" onclick="doCheckout()" style="margin-right: 20px;">
+        Checkout
+    </button>
+</form>
+<script>
+    function doDelete() {
+        var deleteItem = [];
+        $('.checkbox:checked').each(function () {
+            var pid = $(this).parents("tr").find(".product_id").text().trim();
+            deleteItem.push(pid);
+
+        })
+        for(var i=0;i<deleteItem.length;i++){
+            alert(deleteItem[i]);
+        }
+        $("#delete_item").val(" 4321")  ;
+        // $.ajax({
+        //     type : 'post',
+        //     url : 'cart.php',
+        //     data : {age:"321"},
+        //     success: function(response) {
+        //         alert("yes");
+        //     },
+        //     error: function (xhr, ajaxOptions, thrownError) {
+        //         alert(xhr.status);
+        //         alert(thrownError);
+        //     },
+        //     complete: function(){
+        //         alert("COm");
+        //     }
+        // });
+        // alert("after");
+    }
+
+    function doClear() {
+        alert("2");
+    }
+
+    function doCheckout() {
+        alert("3");
+    }
+</script>
 </body>
 </html>
