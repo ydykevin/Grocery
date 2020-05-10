@@ -20,6 +20,9 @@
 <table class="table table-bordered" style="width: 99%;">
     <thead class="bg-secondary" style="color:#fff">
     <tr>
+        <th colspan="6" style="vertical-align: middle;text-align: center">Product Details</th>
+    </tr>
+    <tr>
         <th scope="col">Product ID</th>
         <th scope="col">Product Name</th>
         <th scope="col">Unit Price</th>
@@ -31,9 +34,9 @@
     <tbody>
     <tr class="vertial-middle">
         <?php
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+        //ini_set('display_errors', 1);
+        //ini_set('display_startup_errors', 1);
+        //error_reporting(E_ALL);
         //session_start();
         //session_destroy();
         session_start();
@@ -94,10 +97,10 @@
             <?php echo $data["in_stock"];
             $_SESSION['in_stock'] = $data["in_stock"]; ?>
         </td>
-        <td style="width: 200px;">
+        <td style="width: 250px;">
             <form action="cart.php" method="post" target="bottom_right" onsubmit="return checkStock()">
-                <div class="row">
-                    <div class="col-8">
+                <div class="input-group-append">
+                    <div>
                         <input class="form-control" type="number" value="1" id="add_quantity" name="add_quantity">
                     </div>
                     <div>
@@ -124,10 +127,9 @@
 <!--    </div>-->
 <!--</div>-->
 <div id="quantity_error" class="card bg-danger float-right"
-     style="width: 22rem; margin-right: 20px; color: #fff;display: none">
-    <div class="card-body">
-        <h5 class="card-title">Quantity Invalid Format</h5>
-<!--        <h6 class="card-subtitle">Quantity should be positive integer which is smaller or equal to in stock number</h6>-->
+     style="width: 13rem; margin-right: 20px; color: #fff;display: none; height:50px;">
+    <div style="padding-top:12px;text-align: center">
+        <h6>Quantity Invalid Format</h6>
     </div>
 </div>
 <script>
@@ -141,6 +143,7 @@
             } else {
                 $('#add_button').prop('disabled', true);
                 $('#quantity_error').css("display", "block");
+                //alert("Invalid quantity");
             }
         });
     });

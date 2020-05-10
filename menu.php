@@ -209,9 +209,9 @@
                         </a>
                         <ul class="dropdown-menu" style="margin-left: 30px; margin-right: 30px"
                             aria-labelledby="fishfinger">
-                            <li><a class="dropdown-item no-collapse" href="detail.php?product_id=5000"
-                                   target="top_right">1KG</a></li>
                             <li><a class="dropdown-item no-collapse" href="detail.php?product_id=5001"
+                                   target="top_right">1KG</a></li>
+                            <li><a class="dropdown-item no-collapse" href="detail.php?product_id=5000"
                                    target="top_right">5KG</a></li>
                         </ul>
                     </li>
