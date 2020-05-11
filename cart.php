@@ -58,7 +58,7 @@ $_SESSION['total_price'] = 0;
         <th scope="col">Unit Price</th>
         <th scope="col">Unit Quantity</th>
         <th scope="col">Required Quantity</th>
-        <th scope="col">Total Cost</th>
+        <th scope="col">Total Price</th>
     </tr>
     </thead>
     <tbody>
@@ -181,7 +181,7 @@ $_SESSION['total_price'] = 0;
         if (isset($_SESSION['cart'])) {
             $max = sizeof($_SESSION['cart']);
             if($max!=0){
-                echo "parent.top_right.location = 'Checkout.php';";
+                echo "parent.top_right.location = 'checkout.php';";
             }else{
                 echo "alert('Nothing to checkout');";
             }

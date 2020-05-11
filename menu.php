@@ -24,7 +24,7 @@
     </style>
 
 </head>
-
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary"
      style="font-weight: bold; width: 300px;position: absolute;z-index: 2;" id="main_navbar">
