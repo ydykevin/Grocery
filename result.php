@@ -94,7 +94,6 @@ $msg = "
 
 if (isset($_SESSION['cart'])) {
     $max = sizeof($_SESSION['cart']);
-    //echo \"<br>size:\", $max;
     //$db = mysqli_connect("rerun.it.uts.edu.au","potiro","pcXZb(kL","poti","3306") or die("Fail to connect to MYSQL");
     $db = mysqli_connect("localhost", "potiro", "pcXZb(kL", "poti", "3307") or die("Fail to connect to MYSQL");
     $_SESSION['total_quantity'] = 0;
@@ -133,16 +132,41 @@ $msg .= "
 
 $msg .= "</table></body></html>";
 
-echo $msg;
+//echo $msg;
 
-if(mail($to,$title,$msg,$headers)){
-    echo "success";
-}else{
-    echo "fail";
-}
+//if (mail($to, $title, $msg, $headers)) {
+    unset($_SESSION['cart']);
+    unset($_SESSION['product_id']);
+    unset($_SESSION['in_stock']);
+    unset($_SESSION['total_quantity']);
+    unset($_SESSION['total_price']);
+    unset($_SESSION['checkout']);
+    session_destroy();
+    echo "
+        <div class='card text-white bg-success' style='text-align:center;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);'>
+            <div class='card-body'>
+                <h5>Thanks for your purchase!<br>The details of your order have been emailed.</h5>
+            </div>
+        </div>
+        <script>
+            $(function(){
+               parent.bottom_right.location.reload(); 
+            });
+        </script>
+    ";
+
+//} else {
+//    echo "
+//        <div class='card text-white bg-danger' style='text-align:center;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);'>
+//            <div class='card-body'>
+//                <h5>Purchase failed!<br>The details of your order have not been emailed.</h5>
+//            </div>
+//        </div>
+//       ";
+//}
+
 
 ?>
-
 </body>
 
 </html>

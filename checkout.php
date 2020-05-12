@@ -27,11 +27,14 @@
     </style>
 </head>
 <body>
-
+<?php
+    session_start();
+    $_SESSION['checkout'] = true;
+?>
 <table class="table table-bordered" style="width: 99%;margin-bottom: 0px;">
     <thead class="bg-secondary" style="color:#fff">
     <tr>
-        <th colspan="4" style="vertical-align: middle;text-align: center">Purchase Details</th>
+        <th colspan="4" style="vertical-align: middle;text-align: center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>&nbsp;Purchase Details</th>
     </tr>
     </thead>
 </table>
@@ -138,7 +141,7 @@
         let post = $("#post").val().trim();
         let email = $("#email").val().trim();
 
-        alert("first:" + first + "--\nsecond:" + second + "--\naddress:" + address + "--\nsuburb:" + suburb + "--\nstate:" + state + "--\ncountry:" + country + "--\npost:" + post + "--\nemail:" + email+"--");
+        //alert("first:" + first + "--\nsecond:" + second + "--\naddress:" + address + "--\nsuburb:" + suburb + "--\nstate:" + state + "--\ncountry:" + country + "--\npost:" + post + "--\nemail:" + email+"--");
 
         let inputArr = [$("#first"), $("#second"), $("#address"), $("#suburb"), $("#state"), $("#country"), $("#post"), $("#email")];
         let valueArr = [first, second, address, suburb, state, country, post, email];
@@ -160,8 +163,12 @@
         }
 
         if (validArr.every((val, i, arr) => val === true)) {
-            alert("All valid");
-            $("form").unbind('submit').submit();
+            //alert("All valid");
+            if(confirm('Do you confirm to purchase?')){
+                $("form").unbind('submit').submit();
+            }else{
+                return false;
+            }
         }else{
             return false;
         }

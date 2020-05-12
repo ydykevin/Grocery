@@ -20,7 +20,7 @@
 <table class="table table-bordered" style="width: 99%;">
     <thead class="bg-secondary" style="color:#fff">
     <tr>
-        <th colspan="6" style="vertical-align: middle;text-align: center">Product Details</th>
+        <th colspan="6" style="vertical-align: middle;text-align: center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>&nbsp;Product Details</th>
     </tr>
     <tr>
         <th scope="col">Product ID</th>
@@ -119,19 +119,14 @@
     </tr>
     </tbody>
 </table>
-<!--<div id="no_stock" class="card bg-danger float-right"-->
-<!--     style="width: 22rem; margin-right: 20px; color: #fff;display: none">-->
-<!--    <div class="card-body">-->
-<!--        <h5 class="card-title">Not enough stock</h5>-->
-<!--        <h6 class="card-subtitle" id="remind_more"></h6>-->
-<!--    </div>-->
-<!--</div>-->
+
 <div id="quantity_error" class="card bg-danger float-right"
      style="width: 13rem; margin-right: 20px; color: #fff;display: none; height:50px;">
     <div style="padding-top:12px;text-align: center">
         <h6>Quantity Invalid Format</h6>
     </div>
 </div>
+
 <script>
     $(function () {
         $('#add_quantity').bind('input', function () {
@@ -150,17 +145,21 @@
 
     function checkStock() {
 
-            if(parseInt(<?php echo $_SESSION['cart'][$product_id] ?>) + parseInt($('#add_quantity').val()) <= parseInt(<?php echo $_SESSION['in_stock'] ?>)){
-                   //alert("old session enough");
-                   return true;
-            }else{
-                   //alert("not enough");
-                   var more = parseInt(<?php echo $_SESSION['in_stock'] ?>) - parseInt(<?php echo $_SESSION['cart'][$product_id] ?>);
-                    //$('#remind_more').text("You can add "+more+" more");
-                    //$('#no_stock').css("display", "block");
-                    alert("Detail: No enough stock");
-                   return false;
+        <?php
+            //echo "alert('-".$_SESSION['checkout']."-')";
+            if(isset($_SESSION['checkout'])){
+                echo "alert('Shopping cart is locked, please finish last checkout by clicking on \"Checkout\" button in the shopping cart page.');
+                return false;";
             }
+        ?>
+
+        if(parseInt(<?php echo $_SESSION['cart'][$product_id] ?>) + parseInt($('#add_quantity').val()) <= parseInt(<?php echo $_SESSION['in_stock'] ?>)){
+            return true;
+        }else{
+            var more = parseInt(<?php echo $_SESSION['in_stock'] ?>) - parseInt(<?php echo $_SESSION['cart'][$product_id] ?>);
+            alert("Detail: No enough stock");
+            return false;
+        }
 
     }
 </script>
